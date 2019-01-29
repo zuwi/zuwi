@@ -161,13 +161,26 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\SitesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RequiredWidgetKey.cs">
+      <DependentUpon>ZuwiDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Role.cs">
       <DependentUpon>ZuwiDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Site.cs">
+      <DependentUpon>ZuwiDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
+      <DependentUpon>ZuwiDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Widget.cs">
+      <DependentUpon>ZuwiDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WidgetData.cs">
       <DependentUpon>ZuwiDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ZuwiDBModel.Context.cs">
@@ -251,6 +264,9 @@
     <Content Include="Views\Shared\Navigation.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <None Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Sites\Show.cshtml" />
+    <Content Include="Views\Widgets\Test.cshtml" />
+    <Content Include="Views\Widgets\TestWidget.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -268,6 +284,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

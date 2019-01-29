@@ -1,0 +1,12 @@
+﻿@using zuwi.Models
+@model zuwi.Models.Site
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int SiteId = Model.Id;
+}
+
+@foreach (Widget w in Model.Widgets)
+{
+    Html.RenderPartial("~/Views/Widgets/" + w.PartialName + ".cshtml", w.WidgetDatas.Where(wd => wd.Sites_Id == SiteId && wd.Widgets_Id == w.Id).ToList());
+}

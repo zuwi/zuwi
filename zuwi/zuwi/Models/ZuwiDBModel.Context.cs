@@ -27,5 +27,9 @@ namespace zuwi.Models
     
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<RequiredWidgetKey> RequiredWidgetKeys { get; set; }
+        public virtual DbSet<Site> Sites { get; set; }
+        public virtual DbSet<WidgetData> WidgetDatas { get; set; }
+        public virtual DbSet<Widget> Widgets { get; set; }
     }
 }

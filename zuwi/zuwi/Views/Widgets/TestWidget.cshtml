@@ -1,0 +1,24 @@
+﻿@using System.Security.Permissions
+@model List<zuwi.Models.WidgetData>
+
+
+<h1>@GetValue("Key1") @GetValue("Key2")</h1>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h3>Authenticated :)</h3>
+}
+else
+{
+    <a href="/Account/Login">Login</a>
+}
+
+@functions
+{
+
+    string GetValue(string key)
+    {
+        return Model.Where(wd => wd.Key == key).First().Value;
+    }
+
+}

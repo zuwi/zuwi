@@ -8,7 +8,15 @@
         <EntityTypeShape EntityType="ZuwiDBModel.User" Width="1.5" PointX="4.875" PointY="1.75" />
         <EntityTypeShape EntityType="ZuwiDBModel.Role" Width="1.5" PointX="1.75" PointY="1.75" />
         <AssociationConnector Association="ZuwiDBModel.UserRole" />
-      </Diagram>
+        <EntityTypeShape EntityType="ZuwiDBModel.RequiredWidgetKey" Width="1.5" PointX="5.75" PointY="6.5" />
+        <EntityTypeShape EntityType="ZuwiDBModel.Site" Width="1.5" PointX="1" PointY="5" />
+        <EntityTypeShape EntityType="ZuwiDBModel.WidgetData" Width="1.5" PointX="2.5" PointY="9.375" />
+        <EntityTypeShape EntityType="ZuwiDBModel.Widget" Width="1.5" PointX="3.5" PointY="6.5" />
+        <AssociationConnector Association="ZuwiDBModel.FK_RequiredWidgetKeys_Widgets" />
+        <AssociationConnector Association="ZuwiDBModel.FK_WidgetData_Sites" />
+        <AssociationConnector Association="ZuwiDBModel.FK_WidgetData_Widgets" />
+        <AssociationConnector Association="ZuwiDBModel.SiteWidget" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
