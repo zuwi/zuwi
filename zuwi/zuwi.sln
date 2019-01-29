@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zuwi", "zuwi\zuwi.csproj", "{CE0504C0-65AD-4589-AC24-3D9016F4369A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WidgetCreator", "WidgetCreator\WidgetCreator.csproj", "{BDB41B14-6258-42F5-8A29-47D0B5FB0186}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CE0504C0-65AD-4589-AC24-3D9016F4369A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE0504C0-65AD-4589-AC24-3D9016F4369A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE0504C0-65AD-4589-AC24-3D9016F4369A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDB41B14-6258-42F5-8A29-47D0B5FB0186}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDB41B14-6258-42F5-8A29-47D0B5FB0186}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDB41B14-6258-42F5-8A29-47D0B5FB0186}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDB41B14-6258-42F5-8A29-47D0B5FB0186}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

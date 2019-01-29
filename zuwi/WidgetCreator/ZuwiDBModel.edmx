@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ZuwiDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="RequiredWidgetKeys">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Widgets_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sites">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\JANNIS\SOURCE\REPOS\ZUWI\ZUWI\ZUWI\APP_DATA\ZUWIDB.MDF.dbo.SiteWidget' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="SiteWidget">
+          <Key>
+            <PropertyRef Name="Sites_Id" />
+            <PropertyRef Name="Widgets_Id" />
+          </Key>
+          <Property Name="Sites_Id" Type="int" Nullable="false" />
+          <Property Name="Widgets_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WidgetData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sites_Id" Type="int" Nullable="false" />
+          <Property Name="Widgets_Id" Type="int" Nullable="false" />
+          <Property Name="Key" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Widgets">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartialName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_RequiredWidgetKeys_Widgets">
+          <End Role="Widgets" Type="Self.Widgets" Multiplicity="1" />
+          <End Role="RequiredWidgetKeys" Type="Self.RequiredWidgetKeys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Widgets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequiredWidgetKeys">
+              <PropertyRef Name="Widgets_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteWidget_Sites">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="1" />
+          <End Role="SiteWidget" Type="Self.SiteWidget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SiteWidget">
+              <PropertyRef Name="Sites_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteWidget_Widgets">
+          <End Role="Widgets" Type="Self.Widgets" Multiplicity="1" />
+          <End Role="SiteWidget" Type="Self.SiteWidget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Widgets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SiteWidget">
+              <PropertyRef Name="Widgets_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WidgetData_Sites">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="1" />
+          <End Role="WidgetData" Type="Self.WidgetData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WidgetData">
+              <PropertyRef Name="Sites_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WidgetData_Widgets">
+          <End Role="Widgets" Type="Self.Widgets" Multiplicity="1" />
+          <End Role="WidgetData" Type="Self.WidgetData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Widgets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WidgetData">
+              <PropertyRef Name="Widgets_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ZuwiDBModelStoreContainer">
+          <EntitySet Name="RequiredWidgetKeys" EntityType="Self.RequiredWidgetKeys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sites" EntityType="Self.Sites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WidgetData" EntityType="Self.WidgetData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Widgets" EntityType="Self.Widgets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiteWidget" EntityType="Self.SiteWidget" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SiteWidget].[Sites_Id] AS [Sites_Id], 
+    [SiteWidget].[Widgets_Id] AS [Widgets_Id]
+    FROM [dbo].[SiteWidget] AS [SiteWidget]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_RequiredWidgetKeys_Widgets" Association="Self.FK_RequiredWidgetKeys_Widgets">
+            <End Role="Widgets" EntitySet="Widgets" />
+            <End Role="RequiredWidgetKeys" EntitySet="RequiredWidgetKeys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteWidget_Sites" Association="Self.FK_SiteWidget_Sites">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="SiteWidget" EntitySet="SiteWidget" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteWidget_Widgets" Association="Self.FK_SiteWidget_Widgets">
+            <End Role="Widgets" EntitySet="Widgets" />
+            <End Role="SiteWidget" EntitySet="SiteWidget" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WidgetData_Sites" Association="Self.FK_WidgetData_Sites">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="WidgetData" EntitySet="WidgetData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WidgetData_Widgets" Association="Self.FK_WidgetData_Widgets">
+            <End Role="Widgets" EntitySet="Widgets" />
+            <End Role="WidgetData" EntitySet="WidgetData" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ZuwiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="RequiredWidgetKey">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Widgets_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Widget" Relationship="Self.FK_RequiredWidgetKeys_Widgets" FromRole="RequiredWidgetKeys" ToRole="Widgets" />
+        </EntityType>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="WidgetDatas" Relationship="Self.FK_WidgetData_Sites" FromRole="Sites" ToRole="WidgetData" />
+          <NavigationProperty Name="Widgets" Relationship="Self.SiteWidget" FromRole="Sites" ToRole="Widgets" />
+        </EntityType>
+        <EntityType Name="WidgetData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sites_Id" Type="Int32" Nullable="false" />
+          <Property Name="Widgets_Id" Type="Int32" Nullable="false" />
+          <Property Name="Key" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Site" Relationship="Self.FK_WidgetData_Sites" FromRole="WidgetData" ToRole="Sites" />
+          <NavigationProperty Name="Widget" Relationship="Self.FK_WidgetData_Widgets" FromRole="WidgetData" ToRole="Widgets" />
+        </EntityType>
+        <EntityType Name="Widget">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartialName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="RequiredWidgetKeys" Relationship="Self.FK_RequiredWidgetKeys_Widgets" FromRole="Widgets" ToRole="RequiredWidgetKeys" />
+          <NavigationProperty Name="WidgetDatas" Relationship="Self.FK_WidgetData_Widgets" FromRole="Widgets" ToRole="WidgetData" />
+          <NavigationProperty Name="Sites" Relationship="Self.SiteWidget" FromRole="Widgets" ToRole="Sites" />
+        </EntityType>
+        <Association Name="FK_RequiredWidgetKeys_Widgets">
+          <End Role="Widgets" Type="Self.Widget" Multiplicity="1" />
+          <End Role="RequiredWidgetKeys" Type="Self.RequiredWidgetKey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Widgets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequiredWidgetKeys">
+              <PropertyRef Name="Widgets_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WidgetData_Sites">
+          <End Role="Sites" Type="Self.Site" Multiplicity="1" />
+          <End Role="WidgetData" Type="Self.WidgetData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WidgetData">
+              <PropertyRef Name="Sites_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WidgetData_Widgets">
+          <End Role="Widgets" Type="Self.Widget" Multiplicity="1" />
+          <End Role="WidgetData" Type="Self.WidgetData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Widgets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WidgetData">
+              <PropertyRef Name="Widgets_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SiteWidget">
+          <End Role="Sites" Type="Self.Site" Multiplicity="*" />
+          <End Role="Widgets" Type="Self.Widget" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ZuwiDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RequiredWidgetKeys" EntityType="Self.RequiredWidgetKey" />
+          <EntitySet Name="Sites" EntityType="Self.Site" />
+          <EntitySet Name="WidgetDatas" EntityType="Self.WidgetData" />
+          <EntitySet Name="Widgets" EntityType="Self.Widget" />
+          <AssociationSet Name="FK_RequiredWidgetKeys_Widgets" Association="Self.FK_RequiredWidgetKeys_Widgets">
+            <End Role="Widgets" EntitySet="Widgets" />
+            <End Role="RequiredWidgetKeys" EntitySet="RequiredWidgetKeys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WidgetData_Sites" Association="Self.FK_WidgetData_Sites">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="WidgetData" EntitySet="WidgetDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WidgetData_Widgets" Association="Self.FK_WidgetData_Widgets">
+            <End Role="Widgets" EntitySet="Widgets" />
+            <End Role="WidgetData" EntitySet="WidgetDatas" />
+          </AssociationSet>
+          <AssociationSet Name="SiteWidget" Association="Self.SiteWidget">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Widgets" EntitySet="Widgets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ZuwiDBModelStoreContainer" CdmEntityContainer="ZuwiDBEntities">
+          <EntitySetMapping Name="RequiredWidgetKeys">
+            <EntityTypeMapping TypeName="ZuwiDBModel.RequiredWidgetKey">
+              <MappingFragment StoreEntitySet="RequiredWidgetKeys">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Widgets_Id" ColumnName="Widgets_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sites">
+            <EntityTypeMapping TypeName="ZuwiDBModel.Site">
+              <MappingFragment StoreEntitySet="Sites">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WidgetDatas">
+            <EntityTypeMapping TypeName="ZuwiDBModel.WidgetData">
+              <MappingFragment StoreEntitySet="WidgetData">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Sites_Id" ColumnName="Sites_Id" />
+                <ScalarProperty Name="Widgets_Id" ColumnName="Widgets_Id" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Widgets">
+            <EntityTypeMapping TypeName="ZuwiDBModel.Widget">
+              <MappingFragment StoreEntitySet="Widgets">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PartialName" ColumnName="PartialName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="SiteWidget" TypeName="ZuwiDBModel.SiteWidget" StoreEntitySet="SiteWidget">
+            <EndProperty Name="Sites">
+              <ScalarProperty Name="Id" ColumnName="Sites_Id" />
+            </EndProperty>
+            <EndProperty Name="Widgets">
+              <ScalarProperty Name="Id" ColumnName="Widgets_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

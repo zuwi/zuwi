@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="71af28e895e9429e856ec031b30819f0" Name="Diagram1">
+        <EntityTypeShape EntityType="ZuwiDBModel.RequiredWidgetKey" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZuwiDBModel.Site" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZuwiDBModel.WidgetData" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZuwiDBModel.Widget" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="ZuwiDBModel.FK_RequiredWidgetKeys_Widgets" ManuallyRouted="false" />
+        <AssociationConnector Association="ZuwiDBModel.FK_WidgetData_Sites" ManuallyRouted="false" />
+        <AssociationConnector Association="ZuwiDBModel.FK_WidgetData_Widgets" ManuallyRouted="false" />
+        <AssociationConnector Association="ZuwiDBModel.SiteWidget" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
