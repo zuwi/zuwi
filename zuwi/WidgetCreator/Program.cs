@@ -16,8 +16,7 @@ namespace WidgetCreator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CreateSite());
-            Application.Run(new CreateWidget());
+            Application.Run(new Hub());
         }
     }
 }

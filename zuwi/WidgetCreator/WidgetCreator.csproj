@@ -67,6 +67,12 @@
     <Compile Include="CreateWidget.Designer.cs">
       <DependentUpon>CreateWidget.cs</DependentUpon>
     </Compile>
+    <Compile Include="Hub.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hub.Designer.cs">
+      <DependentUpon>Hub.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequiredWidgetKey.cs">
@@ -96,11 +102,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ZuwiDBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ZuwiDBSitesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ZuwiDBSitesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ZuwiDBWidgetsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ZuwiDBWidgetsDataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CreateSite.resx">
       <DependentUpon>CreateSite.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateWidget.resx">
       <DependentUpon>CreateWidget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hub.resx">
+      <DependentUpon>Hub.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -127,6 +146,28 @@
     </EntityDeploy>
     <None Include="ZuwiDBModel.edmx.diagram">
       <DependentUpon>ZuwiDBModel.edmx</DependentUpon>
+    </None>
+    <None Include="ZuwiDBSitesDataSet.xsc">
+      <DependentUpon>ZuwiDBSitesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ZuwiDBSitesDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ZuwiDBSitesDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ZuwiDBSitesDataSet.xss">
+      <DependentUpon>ZuwiDBSitesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ZuwiDBWidgetsDataSet.xsc">
+      <DependentUpon>ZuwiDBWidgetsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ZuwiDBWidgetsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ZuwiDBWidgetsDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ZuwiDBWidgetsDataSet.xss">
+      <DependentUpon>ZuwiDBWidgetsDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
